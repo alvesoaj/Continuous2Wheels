@@ -25,6 +25,7 @@
 #define IDLE 0
 #define FORWARD 1
 #define BACKWARD 2
+#define MILI 1000
 
 /********************************************************************
  * DECLARATIONS
@@ -42,9 +43,9 @@ public:
 
 	void stopWheels();
 	void forward(int speed);
+	void forward(int speed, double distance);
 	void backward(int speed);
-	void forward(int speed, int distance);
-	void backward(int speed, int distance);
+	void backward(int speed, double distance);
 	void bend(int degree);
 	void rigthBend(int degree);
 	void leftBend(int degree);
