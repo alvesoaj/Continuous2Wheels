@@ -44,7 +44,7 @@ Continuous2Wheels::Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,
 	_speed = STOPED;
 	_direction = IDLE;
 	//Setting the resistance value
-	_resistence = RESISTANCE_DEFAULT;
+	_resistence = RESISTENCE_DEFAULT;
 }
 
 Continuous2Wheels::Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,

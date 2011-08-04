@@ -35,7 +35,7 @@
 #define FORWARD 1 //It sight the machine is moving to forward
 #define BACKWARD 2 //It sight the machine is moving to backward
 #define SERIAL_BAUD_DEFAULT 9600
-#define RESISTANCE_DEFAULT 0
+#define RESISTENCE_DEFAULT 0
 
 /********************************************************************
  * DECLARATIONS
@@ -54,7 +54,7 @@ public:
 	 The Bend Radius, Bend radius is the length value from one wheel to another, the machine shaft length
 
 	 The first constructor to work in a ideal scenery, without resistance, the second needs to set a resistance value
-	 */
+	*/
 	Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,
 			double wheellRadius, double bendRadius);
 	Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,
