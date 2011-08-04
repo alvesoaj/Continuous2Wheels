@@ -53,8 +53,8 @@ public:
 	void setDebugMode(bool mode);
 
 private:
-	Servo* _rightWheel;
-	Servo* _leftWheel;
+	Servo _rightWheel;
+	Servo _leftWheel;
 	double _wheelRadius;
 	double _bendRadius;
 
