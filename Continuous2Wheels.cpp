@@ -9,13 +9,15 @@
  zerokol.com
  */
 
+#include "Continuous2Wheels.h"
+
 /********************************************************************
  * IMPLEMENTATION
  ********************************************************************/
 
 Continuous2Wheels::Continuous2Wheels(int rigthWhreelPin, int leftWhreelPin,
 		double wheellRadius, double bendRadius) {
-	//attaching referred pins to associatives whreels
+	//attaching referred pins to associative wheels
 	Serial.begin(9600);
 	_rightWheel.attach(rigthWhreelPin);
 	_leftWheel.attach(leftWhreelPin);
@@ -65,7 +67,7 @@ void Continuous2Wheels::forward(int speed, double distance) {
 	delay(waitValue);
 	stopWheels();
 	if (_debug) {
-		Serial.print("backward(int speed, double distance) -> Desplacement: ");
+		Serial.print("backward(int speed, double distance) -> Displacement: ");
 		Serial.print(desplacement);
 		Serial.print(", Waiting: ");
 		Serial.println(waitValue);
@@ -87,7 +89,7 @@ void Continuous2Wheels::backward(int speed, double distance) {
 	delay(waitValue);
 	stopWheels();
 	if (_debug) {
-		Serial.print("backward(int speed, double distance) -> Desplacement: ");
+		Serial.print("backward(int speed, double distance) -> Displacement: ");
 		Serial.print(desplacement);
 		Serial.print(", Waiting: ");
 		Serial.println(waitValue);
@@ -120,7 +122,7 @@ void Continuous2Wheels::rigthBend(int degree) {
 	if (_debug) {
 		Serial.print("rigthBend(int degree) -> Radians: ");
 		Serial.print(radiansV);
-		Serial.print(", Desplacement: ");
+		Serial.print(", Displacement: ");
 		Serial.print(desplacement);
 		Serial.print(", Waiting: ");
 		Serial.println(waitValue);
@@ -140,7 +142,7 @@ void Continuous2Wheels::leftBend(int degree) {
 	if (_debug) {
 		Serial.print("leftBend(int degree) -> Radians: ");
 		Serial.print(radiansV);
-		Serial.print(", Desplacement: ");
+		Serial.print(", Displacement: ");
 		Serial.print(desplacement);
 		Serial.print(", Waiting: ");
 		Serial.println(waitValue);
@@ -167,7 +169,7 @@ void Continuous2Wheels::spin(int degree) {
 	if (_debug) {
 		Serial.print("spin(int degree) -> Radians: ");
 		Serial.print(radiansV);
-		Serial.print(", Desplacement: ");
+		Serial.print(", Displacement: ");
 		Serial.print(desplacement);
 		Serial.print(", Waiting: ");
 		Serial.println(waitValue);
@@ -193,7 +195,7 @@ void Continuous2Wheels::spin(int degree, int speed) {
 	if (_debug) {
 		Serial.print("spin(int degree, int speed) -> Radians: ");
 		Serial.print(radiansV);
-		Serial.print(", Desplacement: ");
+		Serial.print(", Displacement: ");
 		Serial.print(desplacement);
 		Serial.print(", Waiting: ");
 		Serial.println(waitValue);

@@ -40,6 +40,7 @@ public:
 
 	Continuous2Wheels(int rigthWhreelPin, int leftWhreelPin, double wheellRadius, double bendRadius);
 	Continuous2Wheels(int rigthWhreelPin, int leftWhreelPin, double wheellRadius, double bendRadius, double resistence);
+
 	void stopWheels();
 	void forward(int speed);
 	void backward(int speed);
