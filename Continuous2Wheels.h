@@ -9,9 +9,6 @@
  zerokol.com
  */
 
-#ifndef Continuous2Wheels
-#define Continuous2Wheels
-
 #include <inttypes.h>
 
 /********************************************************************
@@ -66,5 +63,3 @@ private:
 	double compriment(double radius);
 	unsigned long getWaitValue(double desplacement, int speed);
 };
-
-#endif
