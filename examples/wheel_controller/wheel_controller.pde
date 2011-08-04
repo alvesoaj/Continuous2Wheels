@@ -15,7 +15,6 @@
  ********************************************************************/
  
 #include <Continuous2Wheels.h> //Importing our Librarie
-#include <Servo.h>
 
 int rightWheelPin = 9; //Pin for rigth wheel
 int leftWheelPin = 10; //Pin for left wheel
