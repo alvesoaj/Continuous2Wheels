@@ -200,7 +200,7 @@ void Continuous2Wheels::spin(int degree, int speed) {
 	}
 }
 
-void Continuous2Wheels::setDebugMode(boolean mode) {
+void Continuous2Wheels::setDebugMode(bool mode) {
 	if (mode) {
 		Serial.println("Debug mode is ON!");
 	} else {

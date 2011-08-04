@@ -36,7 +36,7 @@ public:
 	int _speed;
 	int _direction;
 	double _resistence;
-	boolean _debug;
+	bool _debug;
 
 	Continuous2Wheels(int rigthWhreelPin, int leftWhreelPin, double wheellRadius, double bendRadius);
 	Continuous2Wheels(int rigthWhreelPin, int leftWhreelPin, double wheellRadius, double bendRadius, double resistence);
@@ -50,7 +50,7 @@ public:
 	void leftBend(int degree);
 	void spin(int degree);
 	void spin(int degree, int speed);
-	void setDebugMode(boolean mode);
+	void setDebugMode(bool mode);
 
 private:
 	Servo* _rightWheel;
