@@ -88,7 +88,7 @@ void Continuous2Wheels::forward(int speed) {
 void Continuous2Wheels::forward(int speed, double distance) {
 	speed = speedFormater(speed);
 	//get the walk value of wheel displacement
-	double displacement = getWalkDesplacement(distance);
+	double displacement = getWalkDisplacement(distance);
 	//get the among of time to wait to reach the displacement
 	unsigned long waitValue = getWaitValue(displacement, speed);
 	//start the motion
@@ -97,7 +97,7 @@ void Continuous2Wheels::forward(int speed, double distance) {
 	//wait until to reach the target
 	delay(waitValue);
 	//stop the machine
-	stopWheels();
+	stop();
 	if (_debug) {
 		Serial.print("backward(int speed, double distance) -> Displacement: ");
 		Serial.print(displacement);
@@ -119,7 +119,7 @@ void Continuous2Wheels::backward(int speed) {
 void Continuous2Wheels::backward(int speed, double distance) {
 	speed = speedFormater(speed);
 	//get the walk value of wheel displacement
-	double displacement = getWalkDesplacement(distance);
+	double displacement = getWalkDisplacement(distance);
 	//get the among of time to wait to reach the displacement
 	unsigned long waitValue = getWaitValue(displacement, speed);
 	//start the motion
@@ -128,7 +128,7 @@ void Continuous2Wheels::backward(int speed, double distance) {
 	//wait until to reach the target
 	delay(waitValue);
 	//stop the machine
-	stopWheels();
+	stop();
 	if (_debug) {
 		Serial.print("backward(int speed, double distance) -> Displacement: ");
 		Serial.print(displacement);
@@ -173,7 +173,7 @@ void Continuous2Wheels::rigthBend(int degree) {
 	//wait until to reach the target
 	delay(waitValue);
 	//restart the motion
-	_rightWheel.write(getWheelSpeed(_speed, RIGTHWHEEL));
+	_rightWheel.write(getWheelSpeed(_speed, RIGHTWHEEL));
 	if (_debug) {
 		Serial.print("rigthBend(int degree) -> Radians: ");
 		Serial.print(radiansVal);
@@ -235,7 +235,7 @@ void Continuous2Wheels::spin(int degree) {
 	//wait until to reach the target
 	delay(waitValue);
 	//STOP THE MACHINE - FOR THE TIME BEING
-	stopWheels();
+	stop();
 	if (_debug) {
 		Serial.print("spin(int degree) -> Radians: ");
 		Serial.print(radiansVal);
@@ -266,7 +266,7 @@ void Continuous2Wheels::spin(int degree, int speed) {
 	//wait until to reach the target
 	delay(waitValue);
 	//STOP THE MACHINE - FOR THE TIME BEING
-	stopWheels();
+	stop();
 	if (_debug) {
 		Serial.print("spin(int degree, int speed) -> Radians: ");
 		Serial.print(radiansVal);
@@ -303,12 +303,12 @@ int Continuous2Wheels::getDirection() {
 }
 
 //Method to get the baud value of serial port communication
-long getSerialPortBaud() {
+long Continuous2Wheels::getSerialPortBaud() {
 	return _serialPortBaud;
 }
 
 //Method to set the baud value of serial port communication
-void setSerialPortBaud(long baud) {
+void Continuous2Wheels::setSerialPortBaud(long baud) {
 	if (_debug) {
 		Serial.println("Debug mode is ON!");
 	} else {
