@@ -11,6 +11,7 @@
 
 #include <inttypes.h>
 #include <Servo.h>
+#include <WProgram.h>
 
 /********************************************************************
  * CONSTANTS

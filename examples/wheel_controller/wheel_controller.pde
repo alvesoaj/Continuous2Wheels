@@ -25,7 +25,7 @@ double resistence = 2.6; //a estimated resistence for the midle in the wheels
 Continuous2Wheels c2w(rightWheelPin, leftWheelPin, wheelRadius, bendRadius, resistence); //Creating a instance for our lib and setting the constructor
 
 void setup(){
-  c2w.debugMode(true); //seting the debug mode for true to show real time logs
+  c2w.setDebugMode(true); //seting the debug mode for true to show real time logs
 }
 
 void loop(){
