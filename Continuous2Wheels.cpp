@@ -30,6 +30,7 @@
 Continuous2Wheels::Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,
 		double wheellRadius, double bendRadius) {
 	//Start the serial communication but with the debug mode off
+	_serialPortBaud = SERIAL_BAUD_DEFAULT;
 	Serial.begin(_serialPortBaud);
 	_debug = false;
 	//attaching referred pins to associative wheels
@@ -42,11 +43,14 @@ Continuous2Wheels::Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,
 	_leftWheel.write(STOPED);
 	_speed = STOPED;
 	_direction = IDLE;
+	//Setting the resistance value
+	_resistence = RESISTANCE_DEFAULT;
 }
 
 Continuous2Wheels::Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,
 		double wheellRadius, double bendRadius, double resistence) {
 	//Start the serial communication but with the debug mode off
+	_serialPortBaud = SERIAL_BAUD_DEFAULT;
 	Serial.begin(_serialPortBaud);
 	_debug = false;
 	//attaching referred pins to associative wheels

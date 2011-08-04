@@ -34,6 +34,8 @@
 #define IDLE 0 //It sight the machine is stopped
 #define FORWARD 1 //It sight the machine is moving to forward
 #define BACKWARD 2 //It sight the machine is moving to backward
+#define SERIAL_BAUD_DEFAULT 9600
+#define RESISTANCE_DEFAULT 0
 
 /********************************************************************
  * DECLARATIONS
@@ -42,9 +44,9 @@ class Continuous2Wheels {
 public:
 	int _speed; //Holds the actual machine' speed
 	int _direction; //Holds the actual motion direction of machine
-	double _resistence = 0; //Holds the resistance from middle into the wheels, in a ideal scenery it is zero
+	double _resistence; //Holds the resistance from middle into the wheels, in a ideal scenery it is zero
 	bool _debug; //Holds the mode of log messages from this header
-	long _serialPortBaud = 9600; //Holds the baud value for the serial port communication, by default 9600
+	long _serialPortBaud; //Holds the baud value for the serial port communication, by default 9600
 
 	/*Both constructors needs: the Arduino's pin in which the right Servo is plugged in,
 	 the Arduino's pin in which the left Servo is plugged in,
