@@ -1,5 +1,6 @@
 /*
    UNIVERSIDADE ESTADUAL DO PIAUÍ - UESPI
+   Bac. em Ciências da Computação - CTU
 
    AJ Alves.
 
@@ -29,7 +30,6 @@ void setup(){
 }
 
 void loop(){
-  delay(10000);
   c2w.forward(45);
   delay(4000);
   c2w.rigthBend(90);
@@ -44,11 +44,10 @@ void loop(){
   delay(4000);
   c2w.leftBend(90);
   delay(4000);
-  c2w.stopWheels();
+  c2w.stop();
   c2w.forward(45, 100);
   c2w.backward(45, 40);
   c2w.spin(180);
   c2w.forward(45, 60);
   c2w.spin(-180);
-  delay(100000000);
 }
