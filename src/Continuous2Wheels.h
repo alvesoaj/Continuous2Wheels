@@ -35,17 +35,22 @@ class Continuous2Wheels {
 public:
 	int _speed;
 	int _direction;
+	double _resistence;
+	boolean _debug;
 
 	Continuous2Wheels(int rigthWhreelPin, int leftWhreelPin, double wheellRadius, double bendRadius);
-	void stop();
+	Continuous2Wheels(int rigthWhreelPin, int leftWhreelPin, double wheellRadius, double bendRadius, double resistence);
+	void stopWheels();
 	void forward(int speed);
 	void backward(int speed);
 	void forward(int speed, int distance);
 	void backward(int speed, int distance);
+	void bend(int degree);
 	void rigthBend(int degree);
 	void leftBend(int degree);
 	void spin(int degree);
 	void spin(int degree, int speed);
+	void setDebugMode(boolean mode);
 
 private:
 	Servo* _rightWheel;
@@ -56,6 +61,8 @@ private:
 	int getSpeed(int speed, int wheel);
 	double degreeToRadian(int degree);
 	double getDesplacement(double radians, double radius);
+	double getWalkDesplacement(double distance);
+	double compriment(double radius);
 	unsigned long getWaitValue(double desplacement, int speed);
 };
 
