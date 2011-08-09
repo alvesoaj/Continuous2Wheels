@@ -173,8 +173,8 @@ void Continuous2Wheels::rigthBend(int degree) {
 	double displacement = getCircleDisplacement(radiansVal, _bendRadius);
 	//get the among of time to wait to reach the displacement
 	unsigned long waitValue = getWaitValue(displacement, _speed);
-	//stop the right wheel
-	_rightWheel.write(STOPED);
+	//adjust the right wheel for a bend
+	_rightWheel.write(STOPED + (_speed * _bendSmooth));
 	//wait until to reach the target
 	delay(waitValue);
 	//restart the motion
@@ -203,8 +203,8 @@ void Continuous2Wheels::leftBend(int degree) {
 	double displacement = getCircleDisplacement(radiansVal, _bendRadius);
 	//get the among of time to wait to reach the displacement
 	unsigned long waitValue = getWaitValue(displacement, _speed);
-	//stop the right wheel
-	_leftWheel.write(STOPED);
+	//adjust the left wheel for a bend
+	_leftWheel.write(STOPED - (_speed * _bendSmooth));
 	//wait until to reach the target
 	delay(waitValue);
 	//restart the motion
@@ -308,15 +308,20 @@ int Continuous2Wheels::getDirection() {
 }
 
 //Method to get the bend smooth value
-int Continuous2Wheels::getBendSmooth() {
+float Continuous2Wheels::getBendSmooth() {
 	return _bendSmooth;
 }
 
 //Method to set the bend smooth***** value
-void Continuous2Wheels::setBendSmooth(int smooth) {
+void Continuous2Wheels::setBendSmooth(float smooth) {
 	if (_debug) {
 		Serial.print("Smooth changed to ");
 		Serial.println(smooth);
+	}
+	if(smooth < 0.0){
+		smooth = 0.0;
+	}else if(smooth > 1.0){
+		smooth = 1.0;
 	}
 	_bendSmooth = smooth;
 }
@@ -396,7 +401,7 @@ double Continuous2Wheels::circleLength(double radius) {
 
 //Method to calculate among of time to wait until the displacement is walked
 unsigned long Continuous2Wheels::getWaitValue(double displacement, int speed) {
-	return (((displacement / speed) * MILI) * _resistence);
+	return ((((displacement / speed) * MILI) * _resistence) * (1 + _bendSmooth));
 }
 
 //Method to format the speed to a valid speed value
