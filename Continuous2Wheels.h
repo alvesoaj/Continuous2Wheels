@@ -31,11 +31,14 @@
 #define RIGHTWHEEL 1 //right wheel
 #define LEFTWHEEL 2 //left wheel
 //machine motion state
-#define IDLE 0 //It sight the machine is stopped
-#define FORWARD 1 //It sight the machine is moving to forward
-#define BACKWARD 2 //It sight the machine is moving to backward
-#define SERIAL_BAUD_DEFAULT 9600
-#define RESISTENCE_DEFAULT 0
+#define IDLE 0 //It sights machine is stopped
+#define FORWARD 1 //It sights machine is moving to forward
+#define BACKWARD 2 //It sights machine is moving to backward
+#define SERIAL_BAUD_DEFAULT 9600 //Baud rate of Serial communication
+#define RESISTENCE_DEFAULT 0 //Perfect world resistance
+#define BEND_SMOOTH_DEFAULT 0 //Bend smooth value default does't attenuate nothing
+#define MAXIMUM_SPEED 90 //Maximum speed who a Servo reaches
+#define MINIMUM_SPEED 0 //Minimum value who a Servo sets *STOPED
 
 /********************************************************************
  * DECLARATIONS
@@ -47,6 +50,7 @@ public:
 	double _resistence; //Holds the resistance from middle into the wheels, in a ideal scenery it is zero
 	bool _debug; //Holds the mode of log messages from this header
 	long _serialPortBaud; //Holds the baud value for the serial port communication, by default 9600
+	int _bendSmooth; //Holds the smooth value to attenuate bends movies
 
 	/*Both constructors needs: the Arduino's pin in which the right Servo is plugged in,
 	 the Arduino's pin in which the left Servo is plugged in,
@@ -65,6 +69,7 @@ public:
 	 distance** is a value in centimeter
 	 degree*** is a value positive or negative different of 0, the sigh determines the direction
 	 degree**** is a value higher then 0
+	 smooth***** percentage value
 
 	 Ps:. Every time you use one of the motion methods the value of _speed and _direction are dynamically changed
 	*/
@@ -85,6 +90,8 @@ public:
 	void setDebugMode(bool mode); //Method to set the Debug Mode of this lib
 	int getSpeed(); //Method to get the speed value
 	int getDirection(); //Method to get direction value
+	int getBendSmooth(); //Method to get the bend smooth value
+	void setBendSmooth(int smooth); //Method to set the bend smooth***** value
 	long getSerialPortBaud(); //Method to get the baud value of serial port communication
 	void setSerialPortBaud(long baud); //Method to set the baud value of serial port communication
 

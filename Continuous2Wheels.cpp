@@ -20,6 +20,7 @@
  distance** is a value in centimeter
  degree*** is a value positive or negative different of 0, the sigh determines the direction
  degree**** is a value higher then 0
+ smooth***** percentage value
 
  Ps:. Every time you use one of the motion methods the value of _speed and _direction are dynamically changed
  */
@@ -45,6 +46,8 @@ Continuous2Wheels::Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,
 	_direction = IDLE;
 	//Setting the resistance value
 	_resistence = RESISTENCE_DEFAULT;
+	//Setting the bend smooth
+	_bendSmooth = BEND_SMOOTH_DEFAULT;
 }
 
 Continuous2Wheels::Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,
@@ -65,6 +68,8 @@ Continuous2Wheels::Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,
 	_direction = IDLE;
 	//Setting the resistance value
 	_resistence = resistence;
+	//Setting the bend smooth
+	_bendSmooth = BEND_SMOOTH_DEFAULT;
 }
 
 //Method to stop the machine
@@ -302,6 +307,20 @@ int Continuous2Wheels::getDirection() {
 	return _direction;
 }
 
+//Method to get the bend smooth value
+int Continuous2Wheels::getBendSmooth() {
+	return _bendSmooth;
+}
+
+//Method to set the bend smooth***** value
+void Continuous2Wheels::setBendSmooth(int smooth) {
+	if (_debug) {
+		Serial.print("Smooth changed to ");
+		Serial.println(smooth);
+	}
+	_bendSmooth = smooth;
+}
+
 //Method to get the baud value of serial port communication
 long Continuous2Wheels::getSerialPortBaud() {
 	return _serialPortBaud;
@@ -310,9 +329,8 @@ long Continuous2Wheels::getSerialPortBaud() {
 //Method to set the baud value of serial port communication
 void Continuous2Wheels::setSerialPortBaud(long baud) {
 	if (_debug) {
-		Serial.println("Debug mode is ON!");
-	} else {
-		Serial.println("Debug mode is OFF!");
+		Serial.print("Serial baud has changed to ");
+		Serial.println(baud);
 	}
 	_serialPortBaud = baud;
 	Serial.end();
@@ -363,7 +381,7 @@ double Continuous2Wheels::getWalkDisplacement(double distance) {
 	if (_debug) {
 		Serial.print("getWalkDisplacement() -> Degree: ");
 		Serial.print(degree);
-		Serial.print(", Compriment: ");
+		Serial.print(", Length: ");
 		Serial.print(circleLength(_wheelRadius));
 		Serial.print(", Radians: ");
 		Serial.println(radiansV);
