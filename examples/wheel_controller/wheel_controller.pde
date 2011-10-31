@@ -25,7 +25,6 @@ double resistance = 2.6; //a estimated resistance for the middle in the wheels
 Continuous2Wheels c2w(rightWheelPin, leftWheelPin, wheelRadius, bendRadius, resistance); //Creating a instance for our lib and setting the constructor
 
 void setup(){
-  c2w.setDebugMode(true); //setting the debug mode for true to show real time logs
   c2w.setBendSmooth(0.2); //Applying a smooth to bends
 }
 

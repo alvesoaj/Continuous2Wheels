@@ -34,7 +34,6 @@
 #define IDLE 0 //It sights machine is stopped
 #define FORWARD 1 //It sights machine is moving to forward
 #define BACKWARD 2 //It sights machine is moving to backward
-#define SERIAL_BAUD_DEFAULT 9600 //Baud rate of Serial communication
 #define RESISTENCE_DEFAULT 0 //Perfect world resistance
 #define BEND_SMOOTH_DEFAULT 0.0 //Bend smooth value default does't attenuate nothing
 #define MAXIMUM_SPEED 90 //Maximum speed who a Servo reaches
@@ -48,7 +47,6 @@ public:
 	int _speed; //Holds the actual machine' speed
 	int _direction; //Holds the actual motion direction of machine
 	double _resistence; //Holds the resistance from middle into the wheels, in a ideal scenery it is zero
-	bool _debug; //Holds the mode of log messages from this header
 	long _serialPortBaud; //Holds the baud value for the serial port communication, by default 9600
 	float _bendSmooth; //Holds the smooth value to attenuate bends movies
 
@@ -72,7 +70,7 @@ public:
 	 smooth***** percentage value
 
 	 Ps:. Every time you use one of the motion methods the value of _speed and _direction are dynamically changed
-	*/
+	 */
 
 	//Motion methods
 	void stop(); //Method to stop the machine
@@ -86,8 +84,6 @@ public:
 	void spin(int degree); //Method to spin the machine in its own axis, the sign of param will determine the spin direction
 	void spin(int degree, int speed); //Method to spin the machine in its own axis, the sign of param will determine the spin direction and in a certain speed*
 	//Auxiliary methods
-	bool getDebugMode(); //Method to get the Debug mode value
-	void setDebugMode(bool mode); //Method to set the Debug Mode of this lib
 	int getSpeed(); //Method to get the speed value
 	int getDirection(); //Method to get direction value
 	float getBendSmooth(); //Method to get the bend smooth value

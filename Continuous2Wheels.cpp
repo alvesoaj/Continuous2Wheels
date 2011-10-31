@@ -13,10 +13,6 @@
 /********************************************************************
  * INCLUDES
  ********************************************************************/
-//Arduino headers
-#include <WProgram.h> //Header to work with native proprietes from Arduino plataform "http://www.arduino.cc"
-#include <Servo.h> //Header do work with Servo Engines "http://www.arduino.cc/en/Reference/Servo"
-
 #include "Continuous2Wheels.h"
 
 /*
@@ -34,10 +30,6 @@
  ********************************************************************/
 Continuous2Wheels::Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,
 		double wheellRadius, double bendRadius) {
-	//Start the serial communication but with the debug mode off
-	_serialPortBaud = SERIAL_BAUD_DEFAULT;
-	Serial.begin(_serialPortBaud);
-	_debug = false;
 	//attaching referred pins to associative wheels
 	_rightWheel.attach(rightWhreelPin);
 	_leftWheel.attach(leftWhreelPin);
@@ -56,10 +48,6 @@ Continuous2Wheels::Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,
 
 Continuous2Wheels::Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,
 		double wheellRadius, double bendRadius, double resistence) {
-	//Start the serial communication but with the debug mode off
-	_serialPortBaud = SERIAL_BAUD_DEFAULT;
-	Serial.begin(_serialPortBaud);
-	_debug = false;
 	//attaching referred pins to associative wheels
 	_rightWheel.attach(rightWhreelPin);
 	_leftWheel.attach(leftWhreelPin);
@@ -107,12 +95,6 @@ void Continuous2Wheels::forward(int speed, double distance) {
 	delay(waitValue);
 	//stop the machine
 	stop();
-	if (_debug) {
-		Serial.print("backward(int speed, double distance) -> Displacement: ");
-		Serial.print(displacement);
-		Serial.print(", Waiting: ");
-		Serial.println(waitValue);
-	}
 }
 
 //Method to move the machine backward in a certain speed*
@@ -138,12 +120,6 @@ void Continuous2Wheels::backward(int speed, double distance) {
 	delay(waitValue);
 	//stop the machine
 	stop();
-	if (_debug) {
-		Serial.print("backward(int speed, double distance) -> Displacement: ");
-		Serial.print(displacement);
-		Serial.print(", Waiting: ");
-		Serial.println(waitValue);
-	}
 }
 
 //Method to make a bend with the passed degree*** value, the degree sigh will determine the bend side
@@ -156,10 +132,6 @@ void Continuous2Wheels::bend(int degree) {
 	} else if (degree < 0) {
 		degree *= -1;
 		leftBend(degree);
-	}
-	if (_debug) {
-		Serial.print("bend(int degree) -> Radians: ");
-		Serial.println(degree);
 	}
 }
 
@@ -183,14 +155,6 @@ void Continuous2Wheels::rigthBend(int degree) {
 	delay(waitValue);
 	//restart the motion
 	_rightWheel.write(getWheelSpeed(_speed, RIGHTWHEEL));
-	if (_debug) {
-		Serial.print("rigthBend(int degree) -> Radians: ");
-		Serial.print(radiansVal);
-		Serial.print(", Displacement: ");
-		Serial.print(displacement);
-		Serial.print(", Waiting: ");
-		Serial.println(waitValue);
-	}
 }
 
 //Method to make a left bend with the passed degree**** value
@@ -213,14 +177,6 @@ void Continuous2Wheels::leftBend(int degree) {
 	delay(waitValue);
 	//restart the motion
 	_leftWheel.write(getWheelSpeed(_speed, LEFTWHEEL));
-	if (_debug) {
-		Serial.print("leftBend(int degree) -> Radians: ");
-		Serial.print(radiansVal);
-		Serial.print(", Displacement: ");
-		Serial.print(displacement);
-		Serial.print(", Waiting: ");
-		Serial.println(waitValue);
-	}
 }
 
 //Method to spin the machine in its own axis, the sign of param will determine the spin direction
@@ -245,14 +201,6 @@ void Continuous2Wheels::spin(int degree) {
 	delay(waitValue);
 	//STOP THE MACHINE - FOR THE TIME BEING
 	stop();
-	if (_debug) {
-		Serial.print("spin(int degree) -> Radians: ");
-		Serial.print(radiansVal);
-		Serial.print(", Displacement: ");
-		Serial.print(displacement);
-		Serial.print(", Waiting: ");
-		Serial.println(waitValue);
-	}
 }
 
 //Method to spin the machine in its own axis, the sign of param will determine the spin direction and in a certain speed*
@@ -276,29 +224,6 @@ void Continuous2Wheels::spin(int degree, int speed) {
 	delay(waitValue);
 	//STOP THE MACHINE - FOR THE TIME BEING
 	stop();
-	if (_debug) {
-		Serial.print("spin(int degree, int speed) -> Radians: ");
-		Serial.print(radiansVal);
-		Serial.print(", Displacement: ");
-		Serial.print(displacement);
-		Serial.print(", Waiting: ");
-		Serial.println(waitValue);
-	}
-}
-
-//Method to get the Debug mode value
-bool Continuous2Wheels::getDebugMode() {
-	return _debug;
-}
-
-//Method to set the Debug Mode of this lib
-void Continuous2Wheels::setDebugMode(bool mode) {
-	if (mode) {
-		Serial.println("Debug mode is ON!");
-	} else {
-		Serial.println("Debug mode is OFF!");
-	}
-	_debug = mode;
 }
 
 //Method to get the speed value
@@ -318,13 +243,9 @@ float Continuous2Wheels::getBendSmooth() {
 
 //Method to set the bend smooth***** value
 void Continuous2Wheels::setBendSmooth(float smooth) {
-	if (_debug) {
-		Serial.print("Smooth changed to ");
-		Serial.println(smooth);
-	}
-	if(smooth < 0.0){
+	if (smooth < 0.0) {
 		smooth = 0.0;
-	}else if(smooth > 1.0){
+	} else if (smooth > 1.0) {
 		smooth = 1.0;
 	}
 	_bendSmooth = smooth;
@@ -337,10 +258,6 @@ long Continuous2Wheels::getSerialPortBaud() {
 
 //Method to set the baud value of serial port communication
 void Continuous2Wheels::setSerialPortBaud(long baud) {
-	if (_debug) {
-		Serial.print("Serial baud has changed to ");
-		Serial.println(baud);
-	}
 	_serialPortBaud = baud;
 	Serial.end();
 	Serial.begin(_serialPortBaud);
@@ -387,14 +304,6 @@ double Continuous2Wheels::getCircleDisplacement(double radiansV, double radius) 
 double Continuous2Wheels::getWalkDisplacement(double distance) {
 	unsigned int degree = (360 * distance) / circleLength(_wheelRadius);
 	double radiansV = degreeToRadian(degree);
-	if (_debug) {
-		Serial.print("getWalkDisplacement() -> Degree: ");
-		Serial.print(degree);
-		Serial.print(", Length: ");
-		Serial.print(circleLength(_wheelRadius));
-		Serial.print(", Radians: ");
-		Serial.println(radiansV);
-	}
 	return getCircleDisplacement(radiansV, _wheelRadius);
 }
 
