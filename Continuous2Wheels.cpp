@@ -28,16 +28,16 @@
 /********************************************************************
  * IMPLEMENTATION OF PUBLIC METHODS
  ********************************************************************/
-Continuous2Wheels::Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,
+Continuous2Wheels::Continuous2Wheels(Servo* rightWhreel, Servo* leftWhreel,
 		double wheellRadius, double bendRadius) {
 	//attaching referred pins to associative wheels
-	_rightWheel.attach(rightWhreelPin);
-	_leftWheel.attach(leftWhreelPin);
+	_rightWheel = rightWhreel;
+	_leftWheel = leftWhreel;
 	//Setting the initial values
 	_wheelRadius = wheellRadius;
 	_bendRadius = bendRadius;
-	_rightWheel.write(STOPED);
-	_leftWheel.write(STOPED);
+	*_rightWheel.write(STOPED);
+	*_leftWheel.write(STOPED);
 	_speed = STOPED;
 	_direction = IDLE;
 	//Setting the resistance value
@@ -46,16 +46,16 @@ Continuous2Wheels::Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,
 	_bendSmooth = BEND_SMOOTH_DEFAULT;
 }
 
-Continuous2Wheels::Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,
+Continuous2Wheels::Continuous2Wheels(Servo* rightWhreel, Servo* leftWhreel,
 		double wheellRadius, double bendRadius, double resistence) {
 	//attaching referred pins to associative wheels
-	_rightWheel.attach(rightWhreelPin);
-	_leftWheel.attach(leftWhreelPin);
+	_rightWheel = rightWhreel;
+	_leftWheel = leftWhreel;
 	//Setting the initial values
 	_wheelRadius = wheellRadius;
 	_bendRadius = bendRadius;
-	_rightWheel.write(STOPED);
-	_leftWheel.write(STOPED);
+	*_rightWheel.write(STOPED);
+	*_leftWheel.write(STOPED);
 	_speed = STOPED;
 	_direction = IDLE;
 	//Setting the resistance value

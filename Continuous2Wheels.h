@@ -18,7 +18,6 @@
 //Arduino headers
 #include <WProgram.h> //Header to work with native proprietes from Arduino plataform "http://www.arduino.cc"
 #include <Servo.h> //Header do work with Servo Engines "http://www.arduino.cc/en/Reference/Servo"
-
 /********************************************************************
  * CONSTANTS
  ********************************************************************/
@@ -38,7 +37,6 @@
 #define BEND_SMOOTH_DEFAULT 0.0 //Bend smooth value default does't attenuate nothing
 #define MAXIMUM_SPEED 90 //Maximum speed who a Servo reaches
 #define MINIMUM_SPEED 0 //Minimum value who a Servo sets *STOPED
-
 /********************************************************************
  * DECLARATIONS
  ********************************************************************/
@@ -56,10 +54,10 @@ public:
 	 The Bend Radius, Bend radius is the length value from one wheel to another, the machine shaft length
 
 	 The first constructor to work in a ideal scenery, without resistance, the second needs to set a resistance value
-	*/
-	Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,
+	 */
+	Continuous2Wheels(Servo* rightWhreel, Servo* leftWhreel,
 			double wheellRadius, double bendRadius);
-	Continuous2Wheels(int rightWhreelPin, int leftWhreelPin,
+	Continuous2Wheels(Servo* rightWhreel, Servo* leftWhreel,
 			double wheellRadius, double bendRadius, double resistence);
 
 	/*
@@ -92,8 +90,8 @@ public:
 	void setSerialPortBaud(long baud); //Method to set the baud value of serial port communication
 
 private:
-	Servo _rightWheel; //Holds the Servo object which will work with the right wheel
-	Servo _leftWheel; //Holds the Servo object which will work with the left wheel
+	Servo* _rightWheel; //Holds the Servo object which will work with the right wheel
+	Servo* _leftWheel; //Holds the Servo object which will work with the left wheel
 	double _wheelRadius; //Holds the wheel radios value
 	double _bendRadius; //Holds the bend radius value
 
