@@ -36,8 +36,8 @@ Continuous2Wheels::Continuous2Wheels(Servo* rightWhreel, Servo* leftWhreel,
 	//Setting the initial values
 	_wheelRadius = wheellRadius;
 	_bendRadius = bendRadius;
-	*_rightWheel.write(STOPED);
-	*_leftWheel.write(STOPED);
+	_rightWheel->write(STOPED);
+	_leftWheel->write(STOPED);
 	_speed = STOPED;
 	_direction = IDLE;
 	//Setting the resistance value
@@ -54,8 +54,8 @@ Continuous2Wheels::Continuous2Wheels(Servo* rightWhreel, Servo* leftWhreel,
 	//Setting the initial values
 	_wheelRadius = wheellRadius;
 	_bendRadius = bendRadius;
-	*_rightWheel.write(STOPED);
-	*_leftWheel.write(STOPED);
+	_rightWheel->write(STOPED);
+	_leftWheel->write(STOPED);
 	_speed = STOPED;
 	_direction = IDLE;
 	//Setting the resistance value
@@ -67,8 +67,8 @@ Continuous2Wheels::Continuous2Wheels(Servo* rightWhreel, Servo* leftWhreel,
 //Method to stop the machine
 void Continuous2Wheels::stop() {
 	_direction = IDLE;
-	_rightWheel.write(STOPED);
-	_leftWheel.write(STOPED);
+	_rightWheel->write(STOPED);
+	_leftWheel->write(STOPED);
 	_speed = STOPED;
 }
 
@@ -76,8 +76,8 @@ void Continuous2Wheels::stop() {
 void Continuous2Wheels::forward(int speed) {
 	speed = speedFormater(speed);
 	_direction = FORWARD;
-	_rightWheel.write(STOPED + speed);
-	_leftWheel.write(STOPED - speed);
+	_rightWheel->write(STOPED + speed);
+	_leftWheel->write(STOPED - speed);
 	_speed = speed;
 }
 
@@ -89,8 +89,8 @@ void Continuous2Wheels::forward(int speed, double distance) {
 	//get the among of time to wait to reach the displacement
 	unsigned long waitValue = getWaitValue(displacement, speed);
 	//start the motion
-	_rightWheel.write(STOPED + speed);
-	_leftWheel.write(STOPED - speed);
+	_rightWheel->write(STOPED + speed);
+	_leftWheel->write(STOPED - speed);
 	//wait until to reach the target
 	delay(waitValue);
 	//stop the machine
@@ -101,8 +101,8 @@ void Continuous2Wheels::forward(int speed, double distance) {
 void Continuous2Wheels::backward(int speed) {
 	speed = speedFormater(speed);
 	_direction = BACKWARD;
-	_rightWheel.write(STOPED - speed);
-	_leftWheel.write(STOPED + speed);
+	_rightWheel->write(STOPED - speed);
+	_leftWheel->write(STOPED + speed);
 	_speed = speed;
 }
 
@@ -114,8 +114,8 @@ void Continuous2Wheels::backward(int speed, double distance) {
 	//get the among of time to wait to reach the displacement
 	unsigned long waitValue = getWaitValue(displacement, speed);
 	//start the motion
-	_rightWheel.write(STOPED - speed);
-	_leftWheel.write(STOPED + speed);
+	_rightWheel->write(STOPED - speed);
+	_leftWheel->write(STOPED + speed);
 	//wait until to reach the target
 	delay(waitValue);
 	//stop the machine
@@ -150,11 +150,11 @@ void Continuous2Wheels::rigthBend(int degree) {
 	//get the among of time to wait to reach the displacement
 	unsigned long waitValue = getWaitValue(displacement, _speed);
 	//adjust the right wheel for a bend
-	_rightWheel.write(STOPED + (_speed * _bendSmooth));
+	_rightWheel->write(STOPED + (_speed * _bendSmooth));
 	//wait until to reach the target
 	delay(waitValue);
 	//restart the motion
-	_rightWheel.write(getWheelSpeed(_speed, RIGHTWHEEL));
+	_rightWheel->write(getWheelSpeed(_speed, RIGHTWHEEL));
 }
 
 //Method to make a left bend with the passed degree**** value
@@ -172,11 +172,11 @@ void Continuous2Wheels::leftBend(int degree) {
 	//get the among of time to wait to reach the displacement
 	unsigned long waitValue = getWaitValue(displacement, _speed);
 	//adjust the left wheel for a bend
-	_leftWheel.write(STOPED - (_speed * _bendSmooth));
+	_leftWheel->write(STOPED - (_speed * _bendSmooth));
 	//wait until to reach the target
 	delay(waitValue);
 	//restart the motion
-	_leftWheel.write(getWheelSpeed(_speed, LEFTWHEEL));
+	_leftWheel->write(getWheelSpeed(_speed, LEFTWHEEL));
 }
 
 //Method to spin the machine in its own axis, the sign of param will determine the spin direction
@@ -191,11 +191,11 @@ void Continuous2Wheels::spin(int degree) {
 	unsigned long waitValue = getWaitValue(displacement, speed);
 	//from the sign of passed param choice the right direction
 	if (degree < 0) {
-		_rightWheel.write(speed);
-		_leftWheel.write(speed * -1);
+		_rightWheel->write(speed);
+		_leftWheel->write(speed * -1);
 	} else {
-		_rightWheel.write(speed * -1);
-		_leftWheel.write(speed);
+		_rightWheel->write(speed * -1);
+		_leftWheel->write(speed);
 	}
 	//wait until to reach the target
 	delay(waitValue);
@@ -214,11 +214,11 @@ void Continuous2Wheels::spin(int degree, int speed) {
 	unsigned long waitValue = getWaitValue(displacement, speed);
 	//from the sign of passed param choice the right direction
 	if (degree < 0) {
-		_rightWheel.write(speed);
-		_leftWheel.write(speed * -1);
+		_rightWheel->write(speed);
+		_leftWheel->write(speed * -1);
 	} else {
-		_rightWheel.write(speed * -1);
-		_leftWheel.write(speed);
+		_rightWheel->write(speed * -1);
+		_leftWheel->write(speed);
 	}
 	//wait until to reach the target
 	delay(waitValue);

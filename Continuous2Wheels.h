@@ -13,6 +13,8 @@
 /********************************************************************
  * INCLUDES
  ********************************************************************/
+#ifndef CONTINUOUS2WHELLS_H
+#define CONTINUOUS2WHELLS_H
 //C headers
 #include <inttypes.h>
 //Arduino headers
@@ -55,10 +57,10 @@ public:
 
 	 The first constructor to work in a ideal scenery, without resistance, the second needs to set a resistance value
 	 */
-	Continuous2Wheels(Servo* rightWhreel, Servo* leftWhreel,
-			double wheellRadius, double bendRadius);
-	Continuous2Wheels(Servo* rightWhreel, Servo* leftWhreel,
-			double wheellRadius, double bendRadius, double resistence);
+	Continuous2Wheels(Servo* rightWhreel, Servo* leftWhreel, double wheellRadius,
+			double bendRadius);
+	Continuous2Wheels(Servo* rightWhreel, Servo* leftWhreel, double wheellRadius,
+			double bendRadius, double resistence);
 
 	/*
 	 speed* must be higher or equal to 0 and lower or equal to 90
@@ -103,3 +105,4 @@ private:
 	unsigned long getWaitValue(double desplacement, int speed); //Method to calculate among of time to wait until the displacement is walked
 	int speedFormater(int speed); //Method to format the speed to a valid speed value
 };
+#endif
