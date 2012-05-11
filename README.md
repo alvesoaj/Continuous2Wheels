@@ -17,6 +17,7 @@ Go to SKETCH → IMPORT LIBRARY → Continuous2Wheels
 ### Usage
 
 See at [wheel_controller.pde Example](http://github.com/zerokol/Continuous2Wheels/blob/master/examples/wheel_controller/wheel_controller.pde)
+See advanced at [adv_wheel_controller.pde Example](http://github.com/zerokol/Continuous2Wheels/blob/master/examples/advanced_wheel_controller/adv_wheel_controller.pde)
 
 [![Creative Commons](http://i.creativecommons.org/l/by-sa/3.0/88x31.png)](http://creativecommons.org/licenses/by-sa/3.0/)
 
