@@ -1,6 +1,6 @@
 ## Continuous2Wheels v1.0 - A Library for Arduino
 
-Continuous2Wheels is an Arduino's library to control the movements of robots guided by two wheels connected to 'continuous servo motors'
+Continuous2Wheels is an Arduino's library to control the movements of robots guided by two wheels connected to `continuous servo motors`
 
 ### Instalation
 Para modo de uso em Portugês: [Continuous2Wheels - Para robôs de duas rodas com Arduino 
