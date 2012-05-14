@@ -30,11 +30,23 @@ Continuous2Wheels c2w(&rightWheel, &leftWheel, wheelRadius, bendRadius, resistan
 void setup(){
   rightWheel.attach(rightWheelPin);
   leftWheel.attach(leftWheelPin);
-  // c2w.setDebugMode(true); //setting the debug mode for true to show real time logs
-  // c2w.setBendSmooth(0.2); //Applying a smooth to bends
+  c2w.setBendSmooth(0.2); //Applying a smooth to bends
 }
 
 void loop(){
+  c2w.forward(45);
+  delay(4000);
+  c2w.backward(45);
+  delay(4000);
+  c2w.bend(-90); // Make a left bent with 90°
+  delay(4000);
+  c2w.bend(-90); // Make a left bent with 90°
+  delay(4000);
+  c2w.bend(-90); // Make a left bent with 90°
+  delay(4000);
+  c2w.bend(-90); // Make a left bent with 90°
+  delay(4000);
+  c2w.spin(360); // Spin the robot 360° in its center, PS:. obstrusive, the robot stop in the end
   c2w.forward(45);
   delay(4000);
   c2w.stop();
