@@ -2,7 +2,7 @@
 
 Continuous2Wheels is an Arduino's library to control the movements of robots guided by two wheels connected to `continuous servo motors`
 
-For robots with DC Motors got to [DC2Wheels](http://github.com/zerokol/DC2Wheels)
+For robots with DC Motors go to [DC2Wheels](http://github.com/zerokol/DC2Wheels)
 
 ### Instalation
 Para modo de uso em Portugês: [Continuous2Wheels - Para robôs de duas rodas com Arduino 
@@ -18,9 +18,9 @@ Go to SKETCH → IMPORT LIBRARY → Continuous2Wheels
 
 ### Usage
 
-See at [wheel_controller.pde Example](http://github.com/zerokol/Continuous2Wheels/blob/master/examples/wheel_controller/wheel_controller.pde)
+See at [c2w_wheel_controller.pde Example](http://github.com/zerokol/Continuous2Wheels/blob/master/examples/c2w_wheel_controller/c2w_wheel_controller.pde)
 
-See advanced at [adv_wheel_controller.pde Example](http://github.com/zerokol/Continuous2Wheels/blob/master/examples/advanced_wheel_controller/adv_wheel_controller.pde)
+See advanced at [c2w_adv_wheel_controller.pde Example](http://github.com/zerokol/Continuous2Wheels/blob/master/examples/c2w_advanced_wheel_controller/c2w_adv_wheel_controller.pde)
 
 ### Next Features
 
